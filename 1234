@@ -1,0 +1,24 @@
+const { Client, GatewayIntentBits } = require('discord.js');
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
+});
+
+require('dotenv').config();
+client.once('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.on('messageCreate', message => {
+  if (message.author.bot) return;
+
+  if (message.content.startsWith('!copy ')) {
+    const textToCopy = message.content.slice(6);
+    message.channel.send(textToCopy);
+  }
+});
+
+client.login(process.env.MTM2NDM3Njc4NDMwNDQ3NjE5MQ.GhL066.mxe1r8a0nZHlDSHaPXr33NFbehm4qIz-8xijfA);
